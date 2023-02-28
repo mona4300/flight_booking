@@ -1,0 +1,58 @@
+<h1>Passengers::Home#index</h1>
+<p>Find me in app/views/passengers/home/index.html.erb</p>
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= error %></p>
+
+<h2>Create Flight Reservation</h2>
+<%= form_for([:passengers, @flight_reservation] ) do |form| %>
+  <% if @flight_reservation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</h2>
+
+      <ul>
+        <% @flight_reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_name, style: "display: block" %>
+    <%= form.text_field :user_name %>
+  </div>
+
+  <div>
+    <%= form.label :flight_id, style: "display: block" %>
+    <%= form.number_field :flight_id %>
+  </div>
+
+  <div>
+    <%= form.label :flight_class_id, style: "display: block" %>
+    <%= form.number_field :flight_class_id %>
+  </div>
+
+  <div>
+    <%= form.submit 'Create' %>
+  </div>
+<% end %>
+
+
+OR 
+
+<h2>Choose Seat Location</h2>
+<%= form_with(url: edit_passengers_flight_reservation_path, method: :get) do |form| %>
+  <div>
+    <%= form.label :pnr, style: "display: block" %>
+    <%= form.text_field :pnr %>
+  </div>
+
+  <div>
+    <%= form.label :flight_id, style: "display: block" %>
+    <%= form.number_field :flight_id %>
+  </div>
+
+  <div>
+    <%= form.submit 'Find' %>
+  </div>
+<% end %>

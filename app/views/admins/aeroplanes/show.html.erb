@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @aeroplane %>
+
+<h4>Aeroplane classes:</h4> 
+
+<div id="aeroplane_classes">
+  <% @aeroplane.aeroplane_classes.each do |aeroplane_class| %>
+    <%= render partial: 'aeroplane_class', locals: { aeroplane_class: aeroplane_class } %>
+  <% end %>
+</div>
+<br/><br/>
+<% unless @aeroplane.flights? %>
+  <%= link_to "New aeroplane class", new_admins_aeroplane_aeroplane_class_path(@aeroplane) %>
+<% end %>
+
+<br/><br/><br/><br/>
+
+<div>
+  <% unless @aeroplane.flights? %>
+    <%= link_to "Edit this aeroplane", edit_admins_aeroplane_path(@aeroplane) %>
+    <br/>
+    <%= button_to "Destroy this aeroplane", [:admins, @aeroplane], method: :delete %>
+  <% end %>
+  <br/><br/>
+  <%= link_to "Back to aeroplanes", admins_aeroplanes_path %>
+</div>
+
+

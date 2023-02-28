@@ -1,0 +1,22 @@
+<div id="<%= dom_id flight %>">
+  <p>
+    <strong>ID:</strong>
+    <%= flight.id %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= flight.name %>
+  </p>
+
+  <p>
+    <strong>Seats Ready:</strong>
+    <%= flight.seats_ready ? 'yes' : 'no' %>
+  </p>
+
+  <p>
+    <strong>Aeroplane:</strong>
+    <%= flight.aeroplane.name %>
+  </p>
+
+</div>

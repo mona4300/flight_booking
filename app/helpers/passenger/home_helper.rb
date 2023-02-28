@@ -1,0 +1,2 @@
+module Passenger::HomeHelper
+end

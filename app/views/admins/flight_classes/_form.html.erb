@@ -1,0 +1,24 @@
+<%= form_for([:admins, flight_class]) do |form| %>
+  <%= form.hidden_field :flight_id, value: flight_class.flight_id %>
+
+  <% if flight_class.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(flight_class.errors.count, "error") %> prohibited this flight_class from being saved:</h2>
+
+      <ul>
+        <% flight_class.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :seat_price, style: "display: block" %>
+    <%= form.text_field :seat_price %>
+  </div>  
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

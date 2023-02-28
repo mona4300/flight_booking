@@ -1,0 +1,52 @@
+<h1>FlightReservations#edit</h1>
+<p>Find me in app/views/flight_reservations/edit.html.erb</p>
+
+
+<%= form_with(
+        url: passengers_flight_reservation_url(
+            pnr: @flight_reservation.pnr,
+            flight_id: @flight_reservation.flight_id
+        ), method: :patch
+    ) do |form| 
+%>
+
+  <% if @flight_reservation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</h2>
+
+      <ul>
+        <% @flight_reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @flight_seats.group_by(&:position).each_with_index do |position_seats, position| %>
+    <% money_diff = money_diff(@flight_reservation, position_seats.last.first.flight_class) %>
+    <% next if money_diff < 0 %>
+
+    <% if money_diff > 0 %>
+      You Need to Pay <%= money_diff %> EGP to Upgrade <br/>
+    <% end %>
+
+    <% position_seats.last.group_by(&:row_number).each_with_index do |rows, row_number| %>
+        <% rows.last.each do |seat| %>
+            <% current_seat = seat.id == @flight_reservation.flight_seat_id %>
+
+            <%=
+                form.radio_button(
+                  :flight_seat_id, seat.id, checked: current_seat, disabled: !current_seat && !seat.availability
+              )
+            %> <%= seat.name %> ----
+        <% end %>
+        <br/>
+    <% end %>
+    <hr/>
+  <% end %>
+
+
+  <div>
+    <%= form.submit 'Choose Seat' %>
+  </div>
+<% end %>

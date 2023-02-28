@@ -1,0 +1,9 @@
+<h1>Editing flight class</h1>
+
+<%= render "form", flight_class: @flight_class %>
+
+<br>
+
+<div>
+  <%= link_to "Back to flight", admins_flight_path(@flight_class.flight) %>
+</div>

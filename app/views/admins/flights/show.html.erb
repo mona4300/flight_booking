@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @flight %>
+
+<h3>Flight Classes</h3>
+
+<div id="flight_classes">
+  <% if @flight.seats_ready? %>
+    <% @flight.flight_classes.each do |flight_class| %>
+      <hr/>
+      <%= render partial: 'flight_class', locals: { flight_class: flight_class } %>
+      <hr/>
+    <% end %>
+  <% end %>
+</div>
+<br/><br/>
+<div>
+  <% unless @flight.reservations? %>
+    <%= link_to "Edit this flight", edit_admins_flight_path(@flight) %> |
+    <br/>
+    <%= button_to "Destroy this flight", [:admins, @flight], method: :delete %>
+  <% end %>
+  <br/><br/>
+  <%= link_to "Back to flights", admins_flights_path %>
+</div>
+

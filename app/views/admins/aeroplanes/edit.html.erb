@@ -1,0 +1,10 @@
+<h1>Editing aeroplane</h1>
+
+<%= render "form", aeroplane: @aeroplane %>
+
+<br>
+
+<div>
+  <%= link_to "Show this aeroplane", [:admins, @aeroplane] %> |
+  <%= link_to "Back to aeroplanes", admins_aeroplanes_path %>
+</div>

@@ -1,0 +1,42 @@
+<%= form_for([:admins, @aeroplane, aeroplane_class]) do |form| %>
+  <% if aeroplane_class.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(aeroplane_class.errors.count, "error") %> prohibited this aeroplane_class from being saved:</h2>
+
+      <ul>
+        <% aeroplane_class.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :seat_price, style: "display: block" %>
+    <%= form.number_field :seat_price %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.label :rows_number, style: "display: block" %>
+    <%= form.number_field :rows_number %>
+  </div>
+
+  <div>
+    <%= form.label :seats_per_row, style: "display: block" %>
+    <%= form.number_field :seats_per_row %>
+  </div>
+
+  <div>
+    <%= form.label :position, style: "display: block" %>
+    <%= form.number_field :position %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

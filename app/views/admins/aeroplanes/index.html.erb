@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Aeroplanes</h1>
+
+<div id="aeroplanes">
+  <% @aeroplanes.each do |aeroplane| %>
+    <hr/>
+    <%= render aeroplane %>
+    <p>
+      <%= link_to "Show this aeroplane", [:admins, aeroplane] %>
+    </p>
+    <hr/>
+  <% end %>
+</div>
+
+<%= link_to "New aeroplane", new_admins_aeroplane_path %>

@@ -1,0 +1,30 @@
+<div id="<%= dom_id flight_class %>">
+  <p>
+    <strong>ID:</strong>
+    <%= flight_class.id %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= flight_class.aeroplane_class.category %>
+  </p>
+
+  <p>
+    <strong>Seat Price:</strong>
+    <%= flight_class.seat_price %>
+  </p>
+
+  <p>
+    <strong>Rows Number:</strong>
+    <%= flight_class.aeroplane_class.rows_number %>
+  </p>
+
+  <p>
+    <strong>Seats per Row:</strong>
+    <%= flight_class.aeroplane_class.seats_per_row %>
+  </p>
+</div>
+
+<% unless flight_class.flight.reservations? %>
+  <%= link_to "Edit this flight class", edit_admins_flight_class_path(flight_class) %>
+<% end %>
