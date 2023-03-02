@@ -1,58 +1,101 @@
-<h1>Passengers::Home#index</h1>
-<p>Find me in app/views/passengers/home/index.html.erb</p>
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= error %></p>
-
-<h2>Create Flight Reservation</h2>
-<%= form_for([:passengers, @flight_reservation] ) do |form| %>
-  <% if @flight_reservation.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</h2>
-
-      <ul>
-        <% @flight_reservation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>Welcome to Flight Booking</h2>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :user_name, style: "display: block" %>
-    <%= form.text_field :user_name %>
   </div>
 
-  <div>
-    <%= form.label :flight_id, style: "display: block" %>
-    <%= form.number_field :flight_id %>
+  <div class="row">
+    <div class="col shadow-sm p-3 mb-5 bg-body rounded">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'i_1.jpg', class: "d-block w-100" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'i_2.jpg', class: "d-block w-100" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'i_3.jpg', class: "d-block w-100" %>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :flight_class_id, style: "display: block" %>
-    <%= form.number_field :flight_class_id %>
+  <div class="row">
+    <div class="col">
+      <p style="color: green"><%= notice %></p>
+      <p style="color: red"><%= error %></p>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit 'Create' %>
+
+  <div class="row">
+    <div class="col shadow-sm p-3 mb-5 bg-body rounded">
+      <h4>Create Flight Reservation</h4>
+      <%= form_for([:passengers, @flight_reservation] ) do |form| %>
+        <% if @flight_reservation.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</h2>
+
+            <ul>
+              <% @flight_reservation.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :user_name, class: "form-label" %>
+          <%= form.text_field :user_name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :flight_id, class: "form-label" %>
+          <%= form.number_field :flight_id, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :flight_class_id, class: "form-label" %>
+          <%= form.number_field :flight_class_id, class: "form-control" %>
+        </div>
+
+        <%= form.submit 'Create', class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="col-1"></div>
+    <div class="col shadow-sm p-3 mb-5 bg-body rounded">      
+      <h4>Already Booked a flight ?</h4>
+      <h5> Choose Your Seat Location</h5>
+
+      <%= form_with(url: edit_passengers_flight_reservation_path, method: :get) do |form| %>
+        <div class="mb-3">
+          <%= form.label :pnr, class: "form-label" %>
+          <%= form.text_field :pnr, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :flight_id, class: "form-label" %>
+          <%= form.number_field :flight_id, class: "form-control" %>
+        </div>
+
+        <%= form.submit 'Find', class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-
-OR 
-
-<h2>Choose Seat Location</h2>
-<%= form_with(url: edit_passengers_flight_reservation_path, method: :get) do |form| %>
-  <div>
-    <%= form.label :pnr, style: "display: block" %>
-    <%= form.text_field :pnr %>
-  </div>
-
-  <div>
-    <%= form.label :flight_id, style: "display: block" %>
-    <%= form.number_field :flight_id %>
-  </div>
-
-  <div>
-    <%= form.submit 'Find' %>
-  </div>
-<% end %>
+</div>

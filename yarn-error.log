@@ -1,0 +1,27 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add @hotwired/turbo-rails
+
+PATH: 
+  /home/mona/.rvm/gems/ruby-3.1.0@flight_booking/bin:/home/mona/.rvm/gems/ruby-3.1.0@global/bin:/home/mona/.rvm/rubies/ruby-3.1.0/bin:/home/mona/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.19.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
