@@ -8,7 +8,9 @@ class Flight < ApplicationRecord
 
   after_commit :prepare_seats_prices, if: :saved_change_to_aeroplane_id?
 
-  validates :name, presence: true
+  validates :name, :departure_date, presence: true
+
+  scope :upcoming, -> { where("departure_date > ?", Time.now) }
 
   def reservations?
     !seats_ready || flight_reservations.exists?

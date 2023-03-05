@@ -19,8 +19,9 @@ aeroplane1.aeroplane_classes.create!(
   ]
 )
 
-Flight.find_or_create_by!(name: 'Flight1', aeroplane: aeroplane1)
-Flight.find_or_create_by!(name: 'Flight2', aeroplane: aeroplane1)
+current_time = Time.now 
+Flight.find_or_create_by!(name: 'Flight1', aeroplane: aeroplane1, departure_date: current_time + 2.months)
+Flight.find_or_create_by!(name: 'Flight2', aeroplane: aeroplane1, departure_date: current_time + 1.months)
 
 aeroplane2 = Aeroplane.find_or_create_by!(name: 'Aeroplane 2')
 aeroplane2.aeroplane_classes.each(&:destroy!)

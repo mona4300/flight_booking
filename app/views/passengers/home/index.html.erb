@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col text-center">
+    <div class="col text-center shadow-sm p-3 my-3 rounded text-white bg-primary bg-gradient">
       <h2>Welcome to Flight Booking</h2>
     </div>
   </div>
@@ -36,66 +36,140 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row text-center">
     <div class="col">
-      <p style="color: green"><%= notice %></p>
-      <p style="color: red"><%= error %></p>
+      <% if error.present? %>
+        <div class="alert alert-danger" role="alert"><%= error %></div>
+      <% end %>
+
+      <% if notice.present? %>
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      <% end %>
     </div>
   </div>
 
 
   <div class="row">
-    <div class="col shadow-sm p-3 mb-5 bg-body rounded">
-      <h4>Create Flight Reservation</h4>
-      <%= form_for([:passengers, @flight_reservation] ) do |form| %>
-        <% if @flight_reservation.errors.any? %>
-          <div style="color: red">
-            <h2><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</h2>
+    <div class="col mb-5">
+      <div class="card shadow rounded">
+        <h4 class="card-header bg-primary bg-gradient text-white">Upcoming Flights</h4>
+        <div class="card-body">
+          <div class="accordion" id="accordionFlights">
+            <% @flights.each_with_index do |flight, i| %>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flight<%= flight.id %>">
+                  <button class="accordion-button collapsed" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#collapse<%= flight.id %>"
+                          aria-expanded="false" aria-controls="collapse<%= flight.id %>">
+                    <%= flight.name %>
+                  </button>
+                </h2>
+                <div id="collapse<%= flight.id %>" class="accordion-collapse collapse"
+                    aria-labelledby="flight<%= flight.id %>" data-bs-parent="#accordionFlights">
+                  <div class="accordion-body">
 
-            <ul>
-              <% @flight_reservation.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Flight Code</th>
+                          <th>Departure Date</th>
+                          <th>Available Classes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th><%= flight.id %></th>
+                          <td><%= flight.departure_date.strftime("%e %b %Y, %I:%M%p") %></td>
+                          <td>
+                              <% flight.flight_classes.each do |flight_class| %>
+                                <div class="row">
+                                  <div class="col">
+                                    <strong><%= flight_class.aeroplane_class.category %></strong>
+                                  </div>
+
+                                  <div class="col">
+                                    <strong>Code:</strong> <%= flight_class.id %>
+                                  </div>
+
+                                  <div class="col">
+                                    <%= flight_class.seat_price %> EGP
+                                  </div>
+                                </div>
+                              <% end %>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-
-        <div class="mb-3">
-          <%= form.label :user_name, class: "form-label" %>
-          <%= form.text_field :user_name, class: "form-control" %>
         </div>
-
-        <div class="mb-3">
-          <%= form.label :flight_id, class: "form-label" %>
-          <%= form.number_field :flight_id, class: "form-control" %>
-        </div>
-
-        <div class="mb-3">
-          <%= form.label :flight_class_id, class: "form-label" %>
-          <%= form.number_field :flight_class_id, class: "form-control" %>
-        </div>
-
-        <%= form.submit 'Create', class: "btn btn-primary" %>
-      <% end %>
+      </div>
     </div>
-    <div class="col-1"></div>
-    <div class="col shadow-sm p-3 mb-5 bg-body rounded">      
-      <h4>Already Booked a flight ?</h4>
-      <h5> Choose Your Seat Location</h5>
+  </div>
 
-      <%= form_with(url: edit_passengers_flight_reservation_path, method: :get) do |form| %>
-        <div class="mb-3">
-          <%= form.label :pnr, class: "form-label" %>
-          <%= form.text_field :pnr, class: "form-control" %>
+  <div class="row align-items-center">
+    <div class="col mb-5 me-5">
+      <div class="card shadow rounded">
+        <h4 class="card-header bg-primary bg-gradient text-white">Create Flight Reservation</h4>
+        <div class="card-body">
+          <%= form_for([:passengers, @flight_reservation] ) do |form| %>
+            <% if @flight_reservation.errors.any? %>
+              <div class="text-danger">
+                <p><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</p>
+
+                <ul>
+                  <% @flight_reservation.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= form.label :user_name, class: "form-label" %>
+              <%= form.text_field :user_name, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :flight_id, class: "form-label" %>
+              <%= form.number_field :flight_id, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :flight_class_id, class: "form-label" %>
+              <%= form.number_field :flight_class_id, class: "form-control" %>
+            </div>
+
+            <%= form.submit 'Create', class: "btn btn-primary" %>
+          <% end %>
         </div>
+      </div>
+    </div>
+    <div class="col mb-5">
+      <div class="card shadow rounded">
+        <h4 class="card-header bg-primary bg-gradient text-white">
+          Choose your Seat Location
+        </h4>
+        <div class="card-body">
+          <p>If you already have a reservation, you can choose your seat location</p>
+          <%= form_with(url: edit_passengers_flight_reservation_path, method: :get) do |form| %>
+            <div class="mb-3">
+              <%= form.label :pnr, class: "form-label" %>
+              <%= form.text_field :pnr, class: "form-control" %>
+            </div>
 
-        <div class="mb-3">
-          <%= form.label :flight_id, class: "form-label" %>
-          <%= form.number_field :flight_id, class: "form-control" %>
+            <div class="mb-3">
+              <%= form.label :flight_id, class: "form-label" %>
+              <%= form.number_field :flight_id, class: "form-control" %>
+            </div>
+
+            <%= form.submit 'Find', class: "btn btn-primary" %>
+          <% end %>
         </div>
-
-        <%= form.submit 'Find', class: "btn btn-primary" %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

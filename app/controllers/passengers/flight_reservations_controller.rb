@@ -3,6 +3,7 @@ module Passengers
     before_action :set_flight_reservation, :set_flight_seats, only: %i[edit update]
     before_action :set_flight_seat, only: :update
     before_action :init_flight_reservation, :check_seats_availability, only: :create
+    before_action :init_upcoming_flights, only: :create
 
     def edit; end
 
