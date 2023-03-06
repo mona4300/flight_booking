@@ -11,6 +11,8 @@ class FlightReservation < ApplicationRecord
 
   validates :pnr, :user_name, uniqueness: { scope: :flight_id }, presence: true
 
+  validates :flight_seat_id, uniqueness: { scope: :flight_id }, allow_nil: true
+
   protected
 
   def generate_pnr

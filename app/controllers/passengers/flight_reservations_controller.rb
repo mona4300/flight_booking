@@ -60,7 +60,7 @@ module Passengers
     def init_flight_reservation
       @flight_reservation = FlightReservation.new(flight_reservation_params)
 
-      @flight_reservation.flight = Flight.find(flight_id_param)
+      @flight_reservation.flight = Flight.upcoming.find(flight_id_param)
       @flight_reservation.flight_class =
         @flight_reservation.flight.flight_classes.find(
           flight_class_id_param

@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center shadow-sm p-3 my-3 rounded text-white bg-primary bg-gradient">
+          <h2><%= link_to "Welcome to Flight Booking", root_path, class: "text-decoration-none text-reset" %></h2>
+        </div>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

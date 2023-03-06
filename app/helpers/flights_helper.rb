@@ -5,4 +5,18 @@ module FlightsHelper
 
     current_class_price - current_price
   end
+
+  def current_seat?(seat, reservation)
+    seat.id == reservation.flight_seat_id
+  end
+
+  def disabled_seat?(seat, reservation)
+    !(
+      seat.id == reservation.flight_seat_id ||
+        (
+          reservation.flight_seat_id_changed? &&
+          seat.id == reservation.flight_seat_id_was
+        )
+    ) && !seat.availability
+  end
 end
