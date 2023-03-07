@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'passengers/home#index'
 
-  devise_for :admins
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   namespace :admins do
     root to: 'home#index'

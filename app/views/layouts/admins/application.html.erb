@@ -7,10 +7,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <%= link_to "Admin Home Page", admins_root_path %>
-    <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center shadow-sm p-3 my-3 rounded text-white bg-primary bg-gradient">
+          <h2><%= link_to "Flight Booking Administration", admins_root_path, class: "text-decoration-none text-reset" %></h2>
+        </div>
+      </div>
+
+      <%= yield %>
+    </div>    
   </body>
 </html>
