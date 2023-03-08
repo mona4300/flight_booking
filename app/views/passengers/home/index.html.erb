@@ -29,17 +29,7 @@
   </div>
 </div>
 
-<div class="row text-center">
-  <div class="col">
-    <% if error.present? %>
-      <div class="alert alert-danger" role="alert"><%= error %></div>
-    <% end %>
-
-    <% if notice.present? %>
-      <div class="alert alert-success" role="alert"><%= notice %></div>
-    <% end %>
-  </div>
-</div>
+<%= render "shared/flash_messages" %>
 
 <div class="row">
   <div class="col mb-5">

@@ -17,6 +17,8 @@
           <h2><%= link_to "Flight Booking Administration", admins_root_path, class: "text-decoration-none text-reset" %></h2>
         </div>
       </div>
+      
+      <%= render "shared/flash_messages" %>
 
       <%= yield %>
     </div>    
