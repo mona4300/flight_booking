@@ -1,85 +1,80 @@
-<div class="row">
-  <div class="col mx-5">
-    <h3>Flight</h3>
+<div class="row mt-5">
+  <div class="col"><h3>Flight</h3></div>
+  <div class="col-auto">
+    <% unless @flight.reservations? %>
+      <%=
+        link_to(
+          "Edit", edit_admins_flight_path(@flight), class: 'btn btn-primary', role: "button"
+        )
+      %>
+      <%=
+        link_to(
+          "Destroy", [:admins, @flight], class: 'btn btn-danger', role: "button",
+          data: { "turbo-method": :delete }
+        )
+      %>
+    <% end %>
+  </div>
+</div>
 
-    <table id="flight" class="table table-hover mt-2">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Seats Ready</th>
-          <th scope="col">Aeroplane</th>
-          <% unless @flight.reservations? %>
-            <th scope="col"> - </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row"><%= @flight.id %></th>
-          <td><%= @flight.name %></td>
-          <td><%= @flight.seats_ready ? 'yes' : 'no' %></td>
-          <td><%= @flight.aeroplane.name %></td>
+<table id="flight" class="table table-hover mt-2">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Seats Ready</th>
+      <th scope="col">Aeroplane</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @flight.id %></th>
+      <td><%= @flight.name %></td>
+      <td><%= @flight.seats_ready ? 'yes' : 'no' %></td>
+      <td><%= @flight.aeroplane.name %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h4 class="mt-5">Flight Classes</h4>
+
+<% if @flight.seats_ready? %>
+  <table id="flight_classes" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Category</th>
+        <th scope="col">Seat Price</th>
+        <th scope="col">Rows Number</th>
+        <th scope="col">Seats per Row</th>
+        <% unless @flight.reservations? %>
+          <th scope="col">-</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @flight.flight_classes.each do |flight_class| %>
+        <tr id="<%= dom_id flight_class %>">
+          <th scope="row"><%= flight_class.id %></th>
+          <td><%= flight_class.aeroplane_class.category %></td>
+          <td><%= flight_class.seat_price %></td>
+          <td><%= flight_class.aeroplane_class.rows_number %></td>
+          <td><%= flight_class.aeroplane_class.seats_per_row %></td>
           <% unless @flight.reservations? %>
             <td>
               <%=
                 link_to(
-                  "Edit", edit_admins_flight_path(@flight), class: 'btn btn-success', role: "button"
-                )
-              %>
-              <%=
-                link_to(
-                  "Destroy", [:admins, @flight], class: 'btn btn-danger', role: "button",
-                  data: { "turbo-method": :delete }
-                )
+                  "Edit", edit_admins_flight_class_path(flight_class),
+                  class: 'btn btn-primary'
+                )              
               %>
             </td>
           <% end %>
         </tr>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
-
-    <h4 class="mt-5">Flight Classes</h4>
-
-    <% if @flight.seats_ready? %>
-      <table id="flight_classes" class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Category</th>
-            <th scope="col">Seat Price</th>
-            <th scope="col">Rows Number</th>
-            <th scope="col">Seats per Row</th>
-            <% unless @flight.reservations? %>
-              <th scope="col">-</th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% @flight.flight_classes.each do |flight_class| %>
-            <tr id="<%= dom_id flight_class %>">
-              <th scope="row"><%= flight_class.id %></th>
-              <td><%= flight_class.aeroplane_class.category %></td>
-              <td><%= flight_class.seat_price %></td>
-              <td><%= flight_class.aeroplane_class.rows_number %></td>
-              <td><%= flight_class.aeroplane_class.seats_per_row %></td>
-              <% unless @flight.reservations? %>
-                <td>
-                  <%=
-                    link_to(
-                      "Edit", edit_admins_flight_class_path(flight_class),
-                      class: 'btn btn-success'
-                    )              
-                  %>
-                </td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-
-    <%= link_to "Back to flights", admins_flights_path %>
-  </div>
-</div>
+<%= link_to "Back to flights", admins_flights_path %>

@@ -1,29 +1,25 @@
 <div class="row">
-  <div class="col mx-5">
-    <div class="row">
-      <div class="col"><h3>Aeroplanes List</h3></div>
-      <div class="col-auto">
-        <%= link_to "New aeroplane", new_admins_aeroplane_path, class: "btn btn-primary" %>
-      </div>
-    </div>
-
-    <table id="aeroplanes" class="table table-hover mt-2">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col"> - </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @aeroplanes.each do |aeroplane| %>
-          <tr>
-            <th scope="row"><%= aeroplane.id %></th>
-            <td><%= aeroplane.name %></td>
-            <td><%= link_to "Show", [:admins, aeroplane] %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="col"><h3>Aeroplanes List</h3></div>
+  <div class="col-auto">
+    <%= link_to "New aeroplane", new_admins_aeroplane_path, class: "btn btn-primary" %>
   </div>
 </div>
+
+<table id="aeroplanes" class="table table-hover mt-2">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col"> - </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @aeroplanes.each do |aeroplane| %>
+      <tr>
+        <th scope="row"><%= aeroplane.id %></th>
+        <td><%= aeroplane.name %></td>
+        <td><%= link_to "Show", [:admins, aeroplane] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
