@@ -25,10 +25,13 @@
               <div class="container-fluid">
                 <div class="collapse navbar-collapse">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <% selected_link = activated_nav_link %>
                     <li class="nav-item">
                       <%=
                         link_to(
-                          "Home", admins_root_path, class: "nav-link active", 'aria-current': "page"
+                          "Home", admins_root_path,
+                          class: "nav-link #{'active' if selected_link == :home}",
+                          'aria-current': "page"
                         )
                       %>
                     </li>
@@ -36,7 +39,9 @@
                     <li class="nav-item">
                       <%=
                         link_to(
-                          "Aeroplanes", admins_aeroplanes_path, class: "nav-link", 'aria-current': "page"
+                          "Aeroplanes", admins_aeroplanes_path,
+                          class: "nav-link #{'active' if selected_link == :aeroplanes}",
+                          'aria-current': "page"
                         )
                       %>
                     </li>
@@ -44,7 +49,9 @@
                     <li class="nav-item">
                       <%=
                         link_to(
-                          "Flights", admins_flights_path, class: "nav-link", 'aria-current': "page"
+                          "Flights", admins_flights_path,
+                          class: "nav-link #{'active' if selected_link == :flights}",
+                          'aria-current': "page"
                         )
                       %>
                     </li>
