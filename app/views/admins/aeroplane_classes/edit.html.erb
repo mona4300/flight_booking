@@ -1,9 +1,20 @@
-<h1>Editing aeroplane class</h1>
-
-<%= render "form", aeroplane_class: @aeroplane_class %>
-
-<br>
-
-<div>
-  <%= link_to "Back to aeroplane", admins_aeroplane_path(@aeroplane_class.aeroplane) %>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col">
+    <div class="card shadow rounded">
+      <h4 class="card-header bg-primary bg-gradient text-white text-center">
+        Editing aeroplane class
+      </h4>
+      <div class="card-body">
+        <%= render "form", aeroplane_class: @aeroplane_class %>
+        <div>
+          <br/>
+          <%= link_to "Back to aeroplane", admins_aeroplane_path(@aeroplane_class.aeroplane) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-1"></div>
 </div>
+
+

@@ -25,27 +25,19 @@ module Admins
     def create
       @flight = Flight.new(flight_params)
   
-      respond_to do |format|
         if @flight.save
-          format.html { redirect_to admins_flight_url(@flight), notice: "Flight was successfully created." }
-          format.json { render :show, status: :created, location: @flight }
+          redirect_to admins_flight_url(@flight), notice: "Flight was successfully created."
         else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @flight.errors, status: :unprocessable_entity }
+          render :new, status: :unprocessable_entity
         end
-      end
     end
   
     # PATCH/PUT /flights/1 or /flights/1.json
     def update
-      respond_to do |format|
-        if @flight.update(flight_params)
-          format.html { redirect_to admins_flight_url(@flight), notice: "Flight was successfully updated." }
-          format.json { render :show, status: :ok, location: @flight }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @flight.errors, status: :unprocessable_entity }
-        end
+      if @flight.update(flight_params)
+        redirect_to admins_flight_url(@flight), notice: "Flight was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
   
@@ -53,10 +45,7 @@ module Admins
     def destroy
       @flight.destroy
   
-      respond_to do |format|
-        format.html { redirect_to admins_flights_url, notice: "Flight was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      redirect_to admins_flights_url, notice: "Flight was successfully destroyed."
     end
   
     private

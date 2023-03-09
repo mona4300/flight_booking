@@ -23,27 +23,19 @@ module Admins
     def create
       @aeroplane = Aeroplane.new(aeroplane_params)
 
-      respond_to do |format|
-        if @aeroplane.save
-          format.html { redirect_to admins_aeroplane_url(@aeroplane), notice: "Aeroplane was successfully created." }
-          format.json { render :show, status: :created, location: @aeroplane }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @aeroplane.errors, status: :unprocessable_entity }
-        end
+      if @aeroplane.save
+        redirect_to admins_aeroplane_url(@aeroplane), notice: "Aeroplane was successfully created."
+      else
+        render :new, status: :unprocessable_entity
       end
     end
 
     # PATCH/PUT /aeroplanes/1 or /aeroplanes/1.json
     def update
-      respond_to do |format|
-        if @aeroplane.update(aeroplane_params)
-          format.html { redirect_to admins_aeroplane_url(@aeroplane), notice: "Aeroplane was successfully updated." }
-          format.json { render :show, status: :ok, location: @aeroplane }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @aeroplane.errors, status: :unprocessable_entity }
-        end
+      if @aeroplane.update(aeroplane_params)
+        redirect_to admins_aeroplane_url(@aeroplane), notice: "Aeroplane was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -51,10 +43,7 @@ module Admins
     def destroy
       @aeroplane.destroy
 
-      respond_to do |format|
-        format.html { redirect_to admins_aeroplanes_url, notice: "Aeroplane was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      redirect_to admins_aeroplanes_url, notice: "Aeroplane was successfully destroyed."
     end
 
     private
