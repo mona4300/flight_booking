@@ -1,15 +1,17 @@
-<div class="row text-center">
-  <div class="col">
-    <% if error.present? %>
-      <div class="alert alert-danger" role="alert"><%= error %></div>
-    <% end %>
+<% if error.present? || alert.present? || notice.present? %>
+  <div class="row text-center">
+    <div class="col">
+      <% if error.present? %>
+        <div class="alert alert-danger" role="alert"><%= error %></div>
+      <% end %>
 
-    <% if alert.present? %>
-      <div class="alert alert-warning" role="alert"><%= alert %></div>
-    <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-warning" role="alert"><%= alert %></div>
+      <% end %>
 
-    <% if notice.present? %>
-      <div class="alert alert-success" role="alert"><%= notice %></div>
-    <% end %>
+      <% if notice.present? %>
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>

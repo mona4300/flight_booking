@@ -74,7 +74,7 @@ module Admins
 
     # Only allow a list of trusted parameters through.
     def flight_params
-      params.require(:flight).permit(:name, :aeroplane_id)
+      params.require(:flight).permit(:name, :aeroplane_id, :departure_date)
     end
   end  
 end

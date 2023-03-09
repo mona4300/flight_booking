@@ -1,10 +1,21 @@
-<h1>Editing flight</h1>
-
-<%= render "form", flight: @flight %>
-
-<br>
-
-<div>
-  <%= link_to "Show this flight", [:admins, @flight] %> |
-  <%= link_to "Back to flights", admins_flights_path %>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col">
+    <div class="card shadow rounded">
+      <h4 class="card-header bg-primary bg-gradient text-white text-center">
+        Editing flight
+      </h4>
+      <div class="card-body">
+        <%= render "form", flight: @flight %>
+        <div>
+          <br/>
+          <%= link_to "Show this flight", [:admins, @flight] %> |
+          <%= link_to "Back to flights", admins_flights_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-1"></div>
 </div>
+
+
