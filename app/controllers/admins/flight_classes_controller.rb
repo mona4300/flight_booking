@@ -25,6 +25,7 @@ module Admins
     # Use callbacks to share common setup or constraints between actions.
     def set_flight_class
       @flight_class = FlightClass.find(params[:id])
+      @breadcrumbs.merge!(flight: @flight_class.flight, flight_class: @flight_class)
     end
 
     # Only allow a list of trusted parameters through.

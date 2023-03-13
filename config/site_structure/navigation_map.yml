@@ -1,0 +1,4 @@
+flights: :flights
+flight_classes: :flights
+aeroplanes: :aeroplanes
+aeroplane_classes: :aeroplanes

@@ -12,6 +12,8 @@ class AeroplaneClass < ApplicationRecord
 
   before_create :sync_total_seats
 
+  alias_attribute :name, :category
+
   protected
 
   def sync_total_seats

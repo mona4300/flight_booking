@@ -11,6 +11,13 @@ module FlightBooking
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    %w[breadcrumbs navigation_map].each do |file_config|
+      file = File.join(Rails.root, 'config', 'site_structure', "#{file_config}.yml")
+      config.public_send(
+        "#{file_config}=", YAML.load(File.read(file)).with_indifferent_access
+      )
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

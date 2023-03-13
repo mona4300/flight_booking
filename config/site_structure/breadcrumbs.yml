@@ -1,0 +1,67 @@
+admins_root:
+  type: :page
+  title: 'Home'
+
+admins_flights:
+  parent: :admins_root
+  type: :page
+  title: 'Flights List'
+
+new_admins_flight:
+  parent: :admins_flights
+  type: :page
+  title: 'New Flight'
+
+admins_flight:
+  parent: :admins_flights
+  type: :resource
+  title: 'Flight: '
+  keys: :flight
+
+edit_admins_flight:
+  parent: :admins_flight
+  type: :resource
+  title: 'Edit Flight: '
+  keys: :flight
+
+edit_admins_flight_class:
+  parent: :admins_flight
+  type: :resource
+  title: 'Edit Flight Class: '
+  keys: :flight_class
+
+new_admins_aeroplane:
+  parent: :admins_aeroplanes
+  type: :page
+  title: 'New Aeroplane'
+
+admins_aeroplanes:
+  parent: :admins_root
+  type: :page
+  title: 'Aeroplanes List'
+
+admins_aeroplane:
+  parent: :admins_aeroplanes
+  type: :resource
+  title: 'Aeroplane: '
+  keys: :aeroplane
+
+edit_admins_aeroplane: 
+  parent: :admins_aeroplane
+  type: :resource
+  title: 'Edit Aeroplane: '
+  keys: :aeroplane
+
+new_admins_aeroplane_aeroplane_class:
+  parent: :admins_aeroplane
+  type: :page
+  title: New Aeroplane Class
+  keys: :aeroplane
+
+edit_admins_aeroplane_aeroplane_class:
+  parent: :admins_aeroplane
+  type: :resource
+  title: 'Edit Aeroplane Class: '
+  keys: 
+    - :aeroplane
+    - :aeroplane_class

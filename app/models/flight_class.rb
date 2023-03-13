@@ -4,4 +4,6 @@ class FlightClass < ApplicationRecord
   belongs_to :aeroplane_class
 
   validates :seat_price, presence: true, numericality: { greater_than: 0 }
+
+  delegate :name, to: :aeroplane_class
 end

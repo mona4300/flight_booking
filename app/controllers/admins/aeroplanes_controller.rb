@@ -57,6 +57,7 @@ module Admins
     # Use callbacks to share common setup or constraints between actions.
     def set_aeroplane
       @aeroplane = Aeroplane.find(params[:id])
+      @breadcrumbs[:aeroplane] = @aeroplane
     end
 
     # Only allow a list of trusted parameters through.
