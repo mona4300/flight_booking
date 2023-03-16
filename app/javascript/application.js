@@ -2,3 +2,18 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
+
+Turbo.setConfirmMethod((message, element) => {
+  let confirmModalElement = document.getElementById('confirmModal')
+  let confirmModal = new bootstrap.Modal(confirmModalElement)
+
+  confirmModalElement.querySelector("div.modal-body").textContent = message
+  confirmModal.show()
+
+  return new Promise((resolve, reject) => {
+    confirmModalElement.addEventListener('turbo.confirmation.closed', event => {
+      confirmModal.hide()
+      resolve(event.target.dataset.confirmed == '1')
+    }, { once: true })
+  })
+})
