@@ -9,6 +9,7 @@ class Flight < ApplicationRecord
   after_commit :prepare_seats_prices, if: :saved_change_to_aeroplane_id?
 
   validates :name, :departure_date, presence: true
+  validate :furture_departure_date, on: %i[update create]
 
   scope :upcoming, -> { where("departure_date > ?", Time.now) }
 
@@ -23,6 +24,12 @@ class Flight < ApplicationRecord
   end
 
   private
+
+  def furture_departure_date
+    return if departure_date&.future?
+
+    errors.add(:departure_date, 'must be in the future')
+  end
 
   def prepare_seats_prices
     update_columns(seats_ready: false)

@@ -17,3 +17,5 @@ Turbo.setConfirmMethod((message, element) => {
     }, { once: true })
   })
 })
+
+document.cookie = 'timezone='+ Intl.DateTimeFormat().resolvedOptions().timeZone

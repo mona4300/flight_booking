@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Admin.create([{ email: 'mona.mohamed4300@gmail.com', password: 'booking123' }])
+Admin.create([{ email: 'flightbooking@test.com', password: 'booking123' }])
 
 aeroplane1 = Aeroplane.find_or_create_by!(name: 'Aeroplane 1')
 aeroplane1.aeroplane_classes.each(&:destroy!)

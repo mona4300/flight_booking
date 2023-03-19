@@ -30,6 +30,7 @@
       <th scope="col">Name</th>
       <th scope="col">Seats Ready</th>
       <th scope="col">Aeroplane</th>
+      <th scope="col">Departure Date</th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
       <td><%= @flight.name %></td>
       <td><%= @flight.seats_ready ? 'yes' : 'no' %></td>
       <td><%= @flight.aeroplane.name %></td>
+      <td><%= @flight.departure_date %></td>
     </tr>
   </tbody>
 </table>

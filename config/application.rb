@@ -11,6 +11,8 @@ module FlightBooking
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.time_zone = "UTC"
+
     %w[breadcrumbs navigation_map].each do |file_config|
       file = File.join(Rails.root, 'config', 'site_structure', "#{file_config}.yml")
       config.public_send(
