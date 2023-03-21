@@ -30,4 +30,128 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  header: "Welcome to Flight Booking"
+  save: Save
+  create: Create
+  edit: Edit
+  new: New
+  destroy: Destroy
+  close: Close
+  show: Show
+  find: Find
+  egp: EGP
+  log_in: 'Log In'
+  yes: 'Yes'
+  no: 'No'
+  confirmation: Confirmation
+  here: Here
+
+  error:
+    single: 'error'
+    plural: 'errors'
+
+  validation_errors: "%{count} %{error_name} prohibited this %{model_name} from being saved:"
+  destroy_confirmation: "Are you sure you want to delete this %{model_name}: %{object_name}?"
+  
+  new_resource: "New %{model_name}"
+  edit_resource: "Editing %{model_name}"
+
+  success:
+    create: "%{model_name} was successfully created."
+    update: "%{model_name} was successfully updated."
+    destroy: "%{model_name} was successfully destroyed."
+
+  admins:
+    header: "Flight Booking Administration"
+    log_out: 'Log Out'
+
+    aeroplanes:
+      errors:
+        flights_exists: "Aeroplane has flights and couldn't be changed"
+
+    flights:
+      errors:
+        reservations_exists: "Flight has reservations and couldn't be changed"
+
+    home:
+      title: Home
+      index:
+        aeroplanes:
+          body: Aeroplanes and Classes Management
+        flights: 
+          body: Flights and Prices Management
+
+  passengers:
+    flight_seats:
+      errors:
+        invalid: 'Flight seat is invalid'
+  
+    flights:
+      errors:
+        invalid: 'Flight or flight class is invalid'
+  
+    flight_classes:
+      errors:
+        no_seats: 'No seats available for this class'
+
+    flight_reservations:
+      edit:
+        title: 'Choose Your Seat Location'
+        upgrade: You Need to Pay %{money_diff} EGP to Upgrade!!!
+        choose: 'Choose Seat'
+      create:
+        success: 'Flight reservation was successfully created. and your PNR is %{pnr} and price equals %{price}'
+      errors:
+        invalid: 'Flight reservation is invalid'
+
+    home:
+      index:
+        previous: Previous
+        Next: Next
+        create_reservation: Create Flight Reservation
+        seat_location: Choose your Seat Location
+        seat_note: If you already have a reservation, you can choose your seat location
+        upcoming: Upcoming Flights
+        available_classes: Available Classes
+        code: Code
+
+  helpers:
+    label:
+      flight_reservation:
+        user_name: Passenger Full Name
+        flight_id: Flight Code
+        flight_class_id: Flight Class Code
+
+  activerecord:
+    models:
+      aeroplane:
+        one: Aeroplane
+        other: Aeroplanes
+
+      aeroplane_class:
+        one: Aeroplane Class
+        other: Aeroplane Classes
+
+      flight:
+        one: Flight
+        other: Flights
+
+      flight_class:
+        one: Flight Class
+        other: Flight Classes
+
+      flight_reservation:
+        one: Flight Reservation
+        other: Flight Reservations
+
+    attributes:
+      flight_reservation:
+        user_name: Passenger Full Name
+        pnr: PNR
+
+    errors:
+      models:
+        flight:
+          attributes:
+            departure_date:
+              past: 'must be in the future'

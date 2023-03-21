@@ -1,20 +1,19 @@
 <%= render "shared/breadcrumbs", current_page: :admins_flights  %>
 
 <div class="row">
-  <div class="col"><h3>Flights List</h3></div>
+  <div class="col"><h3><%= crud_t(resource_klass, :index) %></h3></div>
   <div class="col-auto">
-    <%= link_to "New flight", new_admins_flight_path, class: "btn btn-primary" %>
+    <%= link_to crud_t(resource_klass, :new), new_admins_flight_path, class: "btn btn-primary" %>
   </div>
 </div>
 
 <table class="table table-hover mt-2">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Seats Ready</th>
-      <th scope="col">Aeroplane</th>
-      <th scope="col">Departure Date</th>
+      <% %i[id name seats_ready departure_date].each do |attr_name|  %>
+        <th scope="col"><%= resource_klass.human_attribute_name(attr_name) %></th>
+      <% end %>
+      <th scope="col"><%= Aeroplane.human_attribute_name(:name) %></th>
       <th scope="col"> - </th>
     </tr>
   </thead>
@@ -23,10 +22,10 @@
       <tr>
         <th scope="row"><%= flight.id %></th>
         <td><%= flight.name %></td>
-        <td><%= flight.seats_ready ? 'yes' : 'no' %></td>
-        <td><%= flight.aeroplane.name %></td>
+        <td><%= seats_status(flight) %></td>
         <td><%= flight.departure_date %></td>
-        <td><%= link_to "Show", [:admins, flight] %></td>
+        <td><%= flight.aeroplane.name %></td>
+        <td><%= link_to t('show'), [:admins, flight] %></td>
       </tr>
     <% end %>
   </tbody>

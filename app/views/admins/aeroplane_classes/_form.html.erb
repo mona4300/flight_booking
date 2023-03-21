@@ -1,7 +1,9 @@
 <%= form_for([:admins, @aeroplane, aeroplane_class]) do |form| %>
   <% if aeroplane_class.errors.any? %>
     <div class="text-danger">
-      <p><%= pluralize(aeroplane_class.errors.count, "error") %> prohibited this aeroplane class from being saved:</p>
+      <p>
+        <%= validation_errors_t(resource_klass, aeroplane_class.errors.count) %>
+      </p>
 
       <ul>
         <% aeroplane_class.errors.each do |error| %>
@@ -36,5 +38,5 @@
     <%= form.number_field :position, class: 'form-control' %>
   </div>
 
-  <%= form.submit "Save", class: "btn btn-primary" %>
+  <%= form.submit t('save'), class: "btn btn-primary" %>
 <% end %>

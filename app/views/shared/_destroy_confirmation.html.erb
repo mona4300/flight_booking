@@ -3,19 +3,19 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Confirmation</h5>
+        <h5 class="modal-title"><%= t('confirmation') %></h5>
       </div>
       <div class="modal-body"></div>
       <div class="modal-footer" data-controller="confirmation-modal">
         <button type="button" class="btn btn-secondary"
                 data-action="click->confirmation-modal#run"
                 data-confirmation-modal-confirmed-param="0">
-          Close
+           <%= t('close') %>
         </button>
         <button type="button" class="btn btn-danger" 
                 data-action="click->confirmation-modal#run"
                 data-confirmation-modal-confirmed-param="1" >
-          Destroy
+          <%= t('destroy') %>
         </button>
       </div>
     </div>

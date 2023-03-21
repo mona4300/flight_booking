@@ -2,9 +2,9 @@
   <div class="col shadow-sm p-3 mb-5 bg-body rounded">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -19,11 +19,11 @@
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden"><%= t('.previous') %></span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden"><%= t('.next') %></span>
       </button>
     </div>
   </div>
@@ -34,7 +34,7 @@
 <div class="row">
   <div class="col mb-5">
     <div class="card shadow rounded">
-      <h4 class="card-header bg-primary bg-gradient text-white">Upcoming Flights</h4>
+      <h4 class="card-header bg-primary bg-gradient text-white"><%= t('.upcoming') %></h4>
       <div class="card-body">
         <div class="accordion" id="accordionFlights">
           <% @flights.each_with_index do |flight, i| %>
@@ -53,9 +53,9 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Flight Code</th>
-                        <th>Departure Date</th>
-                        <th>Available Classes</th>
+                        <th><%= Flight.human_attribute_name(:code) %></th>
+                        <th><%= Flight.human_attribute_name(:departure_date) %></th>
+                        <th><%= t('.available_classes') %></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -70,11 +70,11 @@
                                 </div>
 
                                 <div class="col">
-                                  <strong>Code:</strong> <%= flight_class.id %>
+                                  <strong><%= t('.code') %>:</strong> <%= flight_class.id %>
                                 </div>
 
                                 <div class="col">
-                                  <%= flight_class.seat_price %> EGP
+                                  <%= flight_class.seat_price %> <%= t('egp') %>
                                 </div>
                               </div>
                             <% end %>
@@ -95,13 +95,20 @@
 <div class="row align-items-center">
   <div class="col mb-5 me-5">
     <div class="card shadow rounded">
-      <h4 class="card-header bg-primary bg-gradient text-white">Create Flight Reservation</h4>
+      <h4 class="card-header bg-primary bg-gradient text-white">
+        <%= t('.create_reservation') %>
+      </h4>
       <div class="card-body">
         <%= form_for([:passengers, @flight_reservation] ) do |form| %>
           <% if @flight_reservation.errors.any? %>
             <div class="text-danger">
-              <p><%= pluralize(@flight_reservation.errors.count, "error") %> prohibited this flight reservation from being saved:</p>
-
+              <p>
+                <%=
+                  validation_errors_t(
+                    @flight_reservation.class, @flight_reservation.errors.count
+                  )
+                %>
+              </p>
               <ul>
                 <% @flight_reservation.errors.each do |error| %>
                   <li><%= error.full_message %></li>
@@ -125,7 +132,7 @@
             <%= form.number_field :flight_class_id, class: "form-control" %>
           </div>
 
-          <%= form.submit 'Create', class: "btn btn-primary" %>
+          <%= form.submit t('create'), class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
@@ -133,22 +140,28 @@
   <div class="col mb-5">
     <div class="card shadow rounded">
       <h4 class="card-header bg-primary bg-gradient text-white">
-        Choose your Seat Location
+        <%= t('.seat_location') %>
       </h4>
       <div class="card-body">
-        <p>If you already have a reservation, you can choose your seat location</p>
+        <p><%= t('.seat_note') %></p>
         <%= form_with(url: edit_passengers_flight_reservation_path, method: :get) do |form| %>
           <div class="mb-3">
-            <%= form.label :pnr, class: "form-label" %>
+            <%=
+              form.label :pnr, FlightReservation.human_attribute_name('pnr'),
+                         class: "form-label"
+            %>
             <%= form.text_field :pnr, class: "form-control" %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :flight_id, class: "form-label" %>
+            <%=
+              form.label :flight_id, t('helpers.label.flight_reservation.flight_id'),
+                          class: "form-label"
+            %>
             <%= form.number_field :flight_id, class: "form-control" %>
           </div>
 
-          <%= form.submit 'Find', class: "btn btn-primary" %>
+          <%= form.submit t('find'), class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

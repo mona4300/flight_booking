@@ -1,67 +1,114 @@
 admins_root:
   type: :page
-  title: 'Home'
+  title:
+    type: :custom
+    values:
+      - admins.home.title
 
 admins_flights:
   parent: :admins_root
   type: :page
-  title: 'Flights List'
+  title: 
+    type: :crud
+    values:
+      - Flight
+      - :index
 
 new_admins_flight:
   parent: :admins_flights
   type: :page
-  title: 'New Flight'
+  title:
+    type: :crud
+    values:
+      - Flight
+      - :new
 
 admins_flight:
   parent: :admins_flights
   type: :resource
-  title: 'Flight: '
-  keys: :flight
+  title:
+    type: :crud
+    keys: :flight
+    values:
+      - Flight
+      - :show
 
 edit_admins_flight:
   parent: :admins_flight
   type: :resource
-  title: 'Edit Flight: '
-  keys: :flight
-
+  title:
+    type: :crud
+    keys: :flight
+    values:
+      - Flight
+      - :edit
+  
 edit_admins_flight_class:
   parent: :admins_flight
   type: :resource
-  title: 'Edit Flight Class: '
-  keys: :flight_class
-
+  title:
+    type: :crud
+    keys: :flight_class
+    values:
+      - FlightClass
+      - :edit
+  
 new_admins_aeroplane:
   parent: :admins_aeroplanes
   type: :page
-  title: 'New Aeroplane'
+  title:
+    type: :crud
+    values:
+      - Aeroplane
+      - :new
 
 admins_aeroplanes:
   parent: :admins_root
   type: :page
-  title: 'Aeroplanes List'
+  title:
+    type: :crud
+    values:
+      - Aeroplane
+      - :index  
 
 admins_aeroplane:
   parent: :admins_aeroplanes
   type: :resource
-  title: 'Aeroplane: '
-  keys: :aeroplane
-
+  title:
+    type: :crud
+    keys: :aeroplane
+    values:
+      - Aeroplane
+      - :show  
+  
 edit_admins_aeroplane: 
   parent: :admins_aeroplane
   type: :resource
-  title: 'Edit Aeroplane: '
-  keys: :aeroplane
+  title:
+    type: :crud
+    keys: :aeroplane
+    values:
+      - Aeroplane
+      - :edit
 
 new_admins_aeroplane_aeroplane_class:
   parent: :admins_aeroplane
   type: :page
-  title: New Aeroplane Class
-  keys: :aeroplane
+  title:
+    type: :crud
+    keys: :aeroplane
+    values:
+      - AeroplaneClass
+      - :new  
 
 edit_admins_aeroplane_aeroplane_class:
   parent: :admins_aeroplane
   type: :resource
-  title: 'Edit Aeroplane Class: '
-  keys: 
-    - :aeroplane
-    - :aeroplane_class
+  title:
+    type: :crud
+    values:
+      - AeroplaneClass
+      - :edit
+    keys: 
+      - :aeroplane
+      - :aeroplane_class

@@ -20,9 +20,13 @@ class AeroplaneClass < ApplicationRecord
             numericality: { greater_than_or_equal_to: 0 },
             uniqueness: { scope: :aeroplane_id }
 
-  before_create :sync_total_seats
+  before_save :sync_total_seats, if: lambda {
+    rows_number_changed? || seats_per_row_changed?
+  }
 
   alias_attribute :name, :category
+
+  scope :order_position, -> { order(position: :asc) }
 
   protected
 

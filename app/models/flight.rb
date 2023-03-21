@@ -28,7 +28,7 @@ class Flight < ApplicationRecord
   def furture_departure_date
     return if departure_date&.future?
 
-    errors.add(:departure_date, 'must be in the future')
+    errors.add(:departure_date, :past)
   end
 
   def prepare_seats_prices

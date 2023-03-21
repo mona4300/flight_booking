@@ -6,4 +6,9 @@ class FlightClass < ApplicationRecord
   validates :seat_price, presence: true, numericality: { greater_than: 0 }
 
   delegate :name, to: :aeroplane_class
+
+  scope :order_position, -> {
+    joins(:aeroplane_class).order('aeroplane_classes.position' => :asc)
+  }
+
 end

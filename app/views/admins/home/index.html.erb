@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col text-center">
     <div class="card shadow rounded">
-      <h4 class="card-header bg-primary bg-gradient text-white">Aeroplanes</h4>
+      <h4 class="card-header bg-primary bg-gradient text-white"><%= crud_t(Aeroplane, :index) %></h4>
       <div class="card-body">
-        <p class="card-text">Aeroplanes and Classes Management</p>
-        <%= link_to "Here", admins_aeroplanes_path, class: "btn btn-primary" %>
+        <p class="card-text"><%= t('.aeroplanes.body') %></p>
+        <%= link_to t('here'), admins_aeroplanes_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
   <div class="col text-center">
       <div class="card shadow rounded">
-      <h4 class="card-header bg-primary bg-gradient text-white">Flights</h4>
+      <h4 class="card-header bg-primary bg-gradient text-white"><%= crud_t(Flight, :index) %></h4>
       <div class="card-body">
-        <p class="card-text">Flights and Prices Management</p>
-        <%= link_to "Here", admins_flights_path, class: "btn btn-primary" %>
+        <p class="card-text"><%= t('.flights.body') %></p>
+        <%= link_to t('here'), admins_flights_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>

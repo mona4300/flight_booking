@@ -1,17 +1,21 @@
 <%= render "shared/breadcrumbs", current_page: :admins_aeroplanes  %>
 
 <div class="row">
-  <div class="col"><h3>Aeroplanes List</h3></div>
+  <div class="col"><h3><%= crud_t(resource_klass, :index) %></h3></div>
   <div class="col-auto">
-    <%= link_to "New aeroplane", new_admins_aeroplane_path, class: "btn btn-primary" %>
+    <%=
+      link_to crud_t(resource_klass, :new),
+              new_admins_aeroplane_path,
+              class: "btn btn-primary"
+    %>
   </div>
 </div>
 
 <table id="aeroplanes" class="table table-hover mt-2">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
+      <th scope="col"><%= resource_klass.human_attribute_name(:id) %></th>
+      <th scope="col"><%= resource_klass.human_attribute_name(:name) %></th>
       <th scope="col"> - </th>
     </tr>
   </thead>
@@ -20,7 +24,7 @@
       <tr>
         <th scope="row"><%= aeroplane.id %></th>
         <td><%= aeroplane.name %></td>
-        <td><%= link_to "Show", [:admins, aeroplane] %></td>
+        <td><%= link_to t('show'), [:admins, aeroplane] %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,8 +1,9 @@
 <%= form_for([:admins, flight]) do |form| %>
   <% if flight.errors.any? %>
     <div class="text-danger">
-      <p><%= pluralize(flight.errors.count, "error") %> prohibited this flight from being saved:</p>
-
+      <p>
+        <%= validation_errors_t(resource_klass, flight.errors.count) %>
+      </p>
       <ul>
         <% flight.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -26,5 +27,5 @@
     <%= form.datetime_field :departure_date, class: 'form-control' %>
   </div>
 
-  <%= form.submit "Save", class: "btn btn-primary" %>
+  <%= form.submit t('save'), class: "btn btn-primary" %>
 <% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin Dashboard FlightBooking</title>
+    <title><%= t('admins.header') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,7 @@
     <div class="container">
       <div class="row">
         <div class="col text-center shadow-sm p-3 my-3 rounded text-white bg-primary bg-gradient">
-          <h2><%= link_to "Flight Booking Administration", admins_root_path, class: "text-decoration-none text-reset" %></h2>
+          <h2><%= link_to t('admins.header'), admins_root_path, class: "text-decoration-none text-reset" %></h2>
         </div>
       </div>
       
@@ -29,7 +29,7 @@
                     <li class="nav-item">
                       <%=
                         link_to(
-                          "Home", admins_root_path,
+                          t('admins.home.title'), admins_root_path,
                           class: "nav-link #{'active' if selected_link == :home}",
                           'aria-current': "page"
                         )
@@ -39,7 +39,7 @@
                     <li class="nav-item">
                       <%=
                         link_to(
-                          "Aeroplanes", admins_aeroplanes_path,
+                          crud_t(Aeroplane, :index), admins_aeroplanes_path,
                           class: "nav-link #{'active' if selected_link == :aeroplanes}",
                           'aria-current': "page"
                         )
@@ -49,7 +49,7 @@
                     <li class="nav-item">
                       <%=
                         link_to(
-                          "Flights", admins_flights_path,
+                          crud_t(Flight, :index), admins_flights_path,
                           class: "nav-link #{'active' if selected_link == :flights}",
                           'aria-current': "page"
                         )
@@ -59,7 +59,7 @@
                     <li class="nav-item">
                       <%= 
                         link_to(
-                          "Log Out", destroy_admin_session_path,
+                          t('admins.log_out'), destroy_admin_session_path,
                           class: "nav-link ", data: { "turbo-method": :delete }
                         )
                       %>

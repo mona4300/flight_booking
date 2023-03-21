@@ -1,6 +1,6 @@
 <div class="card shadow rounded my-5">
   <h4 class="card-header bg-primary bg-gradient text-white text-center">
-    Log in
+    <%= t('log_in') %>
   </h4>
   <div class="card-body">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
@@ -14,7 +14,7 @@
         <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
       </div>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <%= f.submit t('log_in'), class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

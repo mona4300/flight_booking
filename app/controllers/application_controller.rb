@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def success_message(object_klass, key)
+    handler = ResourcesLocalesHandler.new(object_klass)
+    handler.success_message(key)    
+  end
+
   def set_time_zone(&block)
     Time.use_zone(timezone_from_cookies, &block)
   end

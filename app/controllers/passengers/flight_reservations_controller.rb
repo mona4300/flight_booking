@@ -5,11 +5,14 @@ module Passengers
     before_action :init_flight_reservation, :check_seats_availability, only: :create
     before_action :init_upcoming_flights, only: :create
 
+    helper_method :resource_klass
+
     def edit; end
 
     def update
       if @flight_reservation.update(flight_seat: @flight_seat)
-        redirect_to root_url, notice: 'Flight Reservation was successfully updated.'
+        redirect_to root_url,
+                    notice: success_message(resource_klass, :update)
       else
         render :edit, status: :unprocessable_entity
       end
@@ -19,9 +22,11 @@ module Passengers
       if @flight_reservation.save
         redirect_to(
           root_url,
-          notice: 'Flight Reservation was successfully created.'\
-                  " and your PNR is #{@flight_reservation.pnr}" \
-                  " and Price equals #{@flight_reservation.flight_class.seat_price}"
+          notice: t(
+            '.success',
+            pnr: @flight_reservation.pnr,
+            price: @flight_reservation.flight_class.seat_price
+          )
         )
       else
         render 'passengers/home/index', status: :unprocessable_entity
@@ -30,6 +35,11 @@ module Passengers
 
     protected
 
+
+    def resource_klass
+      FlightReservation
+    end
+
     def set_flight_seat
       @flight_seat = FlightSeat.find(params[:flight_seat_id])
 
@@ -37,9 +47,9 @@ module Passengers
       available_seat ||= @flight_seat.flight.empty_seats?(@flight_seat.flight_class)
       return if available_seat
 
-      redirect_to root_url, error: 'No Seats Available for this class'
+      redirect_to request.referrer, error: t('passengers.flight_classes.errors.no_seats')
     rescue ActiveRecord::RecordNotFound
-      redirect_to edit_passengers_flight_reservation_path, error: 'Flight Seat not valid!!'
+      redirect_to request.referrer, error: t('passengers.flight_seats.errors.invalid')
     end
 
     def set_flight_seats
@@ -54,7 +64,7 @@ module Passengers
         pnr: params[:pnr]
       )
     rescue ActiveRecord::RecordNotFound
-      redirect_to root_url, error: 'Flight Reservation not found!!'
+      redirect_to root_url, error: t('passengers.flight_reservations.errors.invalid')
     end
 
     def init_flight_reservation
@@ -66,7 +76,7 @@ module Passengers
           flight_class_id_param
         )
     rescue ActiveRecord::RecordNotFound
-      redirect_to root_url, error: 'Flight or Flight Class not valid'
+      redirect_to root_url, error: t('passengers.flights.errors.invalid')
     end
 
     def flight_reservation_params
@@ -84,7 +94,7 @@ module Passengers
     def check_seats_availability
       return if @flight_reservation.flight.empty_seats?(@flight_reservation.flight_class)
 
-      redirect_to root_url, error: 'No Seats Available for this class'
+      redirect_to root_url, error: t('passengers.flight_classes.errors.no_seats')
     end
   end
 end

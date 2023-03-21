@@ -7,7 +7,7 @@
         <li class="breadcrumb-item active" aria-current="page"><%= item[:title] %></li>
       <% else %>          
         <li class="breadcrumb-item" aria-current="page">
-          <%= link_to item[:title], item[:url] %>
+          <%= link_to item[:title], public_send(item[:url][:helper], item[:url][:params]) %>
           </li>
       <% end %>
     <% end %>

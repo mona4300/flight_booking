@@ -2,11 +2,9 @@
 
 <div class="card shadow rounded mb-5">
   <h4 class="card-header bg-primary bg-gradient text-white">
-    New aeroplane class
+    <%= crud_t(resource_klass, :new) %>
   </h4>
   <div class="card-body">
     <%= render "form", aeroplane_class: @aeroplane_class %>
   </div>
 </div>
-
-

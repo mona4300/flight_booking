@@ -10,6 +10,10 @@ module FlightsHelper
     seat.id == reservation.flight_seat_id
   end
 
+  def seats_status(flight)
+    flight.seats_ready ? t('yes') : t('no')
+  end
+
   def disabled_seat?(seat, reservation)
     !(
       seat.id == reservation.flight_seat_id ||

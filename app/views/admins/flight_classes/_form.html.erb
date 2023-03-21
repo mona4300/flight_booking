@@ -3,7 +3,9 @@
 
   <% if flight_class.errors.any? %>
     <div class="text-danger">
-      <p><%= pluralize(flight_class.errors.count, "error") %> prohibited this flight class from being saved:</p>
+      <p>
+        <%= validation_errors_t(resource_klass, flight_class.errors.count) %>      
+      </p>
 
       <ul>
         <% flight_class.errors.each do |error| %>
@@ -18,5 +20,5 @@
     <%= form.text_field :seat_price, class: 'form-control' %>
   </div>  
 
-  <%= form.submit 'Save', class: 'btn btn-primary' %>
+  <%= form.submit t('save'), class: 'btn btn-primary' %>
 <% end %>

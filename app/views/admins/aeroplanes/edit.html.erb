@@ -2,7 +2,7 @@
 
 <div class="card shadow rounded">
   <h4 class="card-header bg-primary bg-gradient text-white">
-    Editing aeroplane
+    <%= crud_t(resource_klass, :edit) %>
   </h4>
   <div class="card-body">
     <%= render "form", aeroplane: @aeroplane %>
